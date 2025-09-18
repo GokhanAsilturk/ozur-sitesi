@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div style="background: #ffe4e1; color: #b22222; text-align: center; padding: 10px; font-weight: bold; font-size: 1.1em; border-bottom: 1px solid #b22222;">
+        Lütfen telefonunun sesini açmayı unutma! 🎵
+        <button id="playSongBtn" style="margin-left: 15px; background: #b22222; color: #fff; border: none; padding: 7px 16px; border-radius: 6px; cursor: pointer; font-size: 1em;">Şarkıyı Başlat</button>
+    </div>
     <div class="container">
         <!-- Ana Başlık Bölümü -->
         <header class="hero-section">
@@ -101,5 +105,21 @@
     </div>
 
     <script src="js/script.js"></script>
-</body>
+    <script>
+        document.getElementById('playSongBtn').addEventListener('click', function() {
+            if (!document.getElementById('hiddenSongFrame')) {
+                var iframe = document.createElement('iframe');
+                iframe.id = 'hiddenSongFrame';
+                iframe.width = '0';
+                iframe.height = '0';
+                iframe.src = 'https://www.youtube.com/embed/clRdYNQNSnI?autoplay=1';
+                iframe.title = 'Gizli Şarkı';
+                iframe.allow = 'autoplay; encrypted-media';
+                iframe.allowFullscreen = true;
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+            }
+        });
+    </script>
+    </body>
 </html>
