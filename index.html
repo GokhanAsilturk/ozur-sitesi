@@ -12,6 +12,7 @@
         <button id="playPauseBtn" style="background: linear-gradient(135deg, #ff6f91 0%, #ffb6b9 100%); color: #fff; border: none; padding: 16px 32px; border-radius: 50px; cursor: pointer; font-size: 2em; box-shadow: 0 4px 16px rgba(255,111,145,0.18); margin-right: 22px; transition: background 0.2s, transform 0.2s; outline: none; position: relative;">
             <span id="songStatusIcon" style="display: inline-block; vertical-align: middle;">▶️</span>
         </button>
+        <audio id="hiddenAudio" src="audio/music.mp3" preload="auto" style="display:none;"></audio>
         <span style="letter-spacing: 1px; font-size: 1.18em; text-shadow: 0 1px 6px #fff, 0 0px 2px #b22222;">Lütfen telefonunun sesini açmayı unutma! 🎵</span>
     </div>
     <div class="container">
@@ -109,34 +110,24 @@
     <script src="js/script.js"></script>
     <script>
         var songPlaying = false;
-        var iframe = null;
         var btn = document.getElementById('playPauseBtn');
         var icon = document.getElementById('songStatusIcon');
+        var audio = document.getElementById('hiddenAudio');
         btn.addEventListener('click', function() {
             if (!songPlaying) {
-                if (!iframe) {
-                    iframe = document.createElement('iframe');
-                    iframe.id = 'hiddenSongFrame';
-                    iframe.width = '0';
-                    iframe.height = '0';
-                    iframe.src = 'https://www.youtube.com/embed/clRdYNQNSnI?autoplay=1';
-                    iframe.title = 'Gizli Şarkı';
-                    iframe.allow = 'autoplay; encrypted-media';
-                    iframe.allowFullscreen = true;
-                    iframe.style.display = 'none';
-                    document.body.appendChild(iframe);
-                } else {
-                    iframe.src = 'https://www.youtube.com/embed/clRdYNQNSnI?autoplay=1';
-                }
+                audio.play();
                 songPlaying = true;
                 icon.textContent = '⏸️';
             } else {
-                if (iframe) {
-                    iframe.src = '';
-                }
+                audio.pause();
+                audio.currentTime = 0;
                 songPlaying = false;
                 icon.textContent = '▶️';
             }
+        });
+        audio.addEventListener('ended', function() {
+            songPlaying = false;
+            icon.textContent = '▶️';
         });
     </script>
     </body>
