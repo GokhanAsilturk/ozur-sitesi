@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safinur'a Özür | Gökhan'dan Sevgiyle</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Ana Başlık Bölümü -->
+        <header class="hero-section">
+            <div class="hearts"></div>
+            <h1 class="main-title">Safinur'um 💕</h1>
+            <p class="subtitle">Benim en değerlim, belki beni dövüp rahatlarsın diye yaptım</p>
+        </header>
+
+        <!-- Özür Mesajı -->
+        <section class="apology-section">
+            <div class="apology-card">
+                <h2>Özür Dilerim My Love 🌹</h2>
+                <p>Saçma bir salaklık yaptım ve bunun için çok pişmanım. Sen benim hayatımın en güzel parçasısın ve sensiz bir gün bile düşünmekte zorlanıyorum.</p>
+                <p>Bir günümü bir saatimi bile sensiz düşünemezken bir ömrü sensiz yaşamak yaşamak mı?</p>
+                <p>Senin gözlerinde görüyorum ben dünyayı 💖</p>
+            </div>
+        </section>
+
+        <!-- Anket Bölümü -->
+        <section class="poll-section">
+            <div class="poll-card">
+                <h3>Safinur'un Kararı 🤔</h3>
+                <p>Gökhan'ın ne kadar dayak yemesini istersin?</p>
+                <form id="pollForm">
+                    <label class="poll-option">
+                        <input type="radio" name="punishment" value="none">
+                        <span>Hiç </span>
+                    </label>
+                    <label class="poll-option">
+                        <input type="radio" name="punishment" value="light">
+                        <span>Az</span>
+                    </label>
+                    <label class="poll-option">
+                        <input type="radio" name="punishment" value="medium">
+                        <span>Orta</span>
+                    </label>
+                    <label class="poll-option">
+                        <input type="radio" name="punishment" value="heavy">
+                        <span>Kemikleri kırılsın (Çok kızgınım! 😡)</span>
+                    </label>
+                    <button type="submit" class="poll-submit">Kararımı Ver!</button>
+                </form>
+                <div id="pollResult" class="poll-result"></div>
+            </div>
+        </section>
+
+        <!-- Gökhan'ı Dövme Oyunu -->
+        <section class="game-section">
+            <div class="game-card">
+                <h3>Gökhan'ı Döv Oyunu 🥊</h3>
+                <p>Kızgınlığını çıkarmak için Gökhan'a tıkla!</p>
+                
+                <!-- Oyun Alanı -->
+                <div class="game-area">
+                    <div class="character" id="character">
+                        <div class="face" id="characterFace" style="background-image: url('images/gokhan.jpg'); background-size: cover; background-position: center;">
+                            <!-- Gözler ve ağız gizli çünkü fotoğraf var -->
+                        </div>
+                        <div class="body"></div>
+                    </div>
+                    
+                    <div class="game-stats">
+                        <div class="stat">
+                            <span>Vuruş Sayısı: </span>
+                            <span id="hitCount">0</span>
+                        </div>
+                        <div class="stat">
+                            <span>Hasar: </span>
+                            <span id="damageLevel">Sağlıklı</span>
+                        </div>
+                    </div>
+                    
+                    <button id="resetGame" class="reset-btn">Oyunu Sıfırla</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Mesajı -->
+        <section class="final-section">
+            <div class="final-card">
+                <h3>Son Söz 💌</h3>
+                <p>Sultanım, allah senin en güzel günlerini göstersin. Uzağım ve hasretinle yanıyorum. </p>
+                <p>Umarım biraz da olsa zaman geçirmene yardımcı olmuşumdur</p>
+                <div class="love-message">
+                    <span class="heart">💖</span>
+                    <span>Kalbimin sultanı</span>
+                    <span class="heart">💖</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
