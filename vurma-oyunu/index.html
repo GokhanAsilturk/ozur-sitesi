@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gökhan'dan Kaçış Oyunu</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/car-game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Arka Plan Kalpler -->
+    <div class="background-hearts">
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💝</div>
+        <div class="heart">💗</div>
+        <div class="heart">💓</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💝</div>
+    </div>
+    
+    <div class="container">
+        <!-- Ana Başlık Bölümü -->
+        <header class="hero-section">
+            <div class="hearts"></div>
+            <p class="subtitle">Gökhan'dan kaçmak için arabanı kullan! 🚗💨</p>
+        </header>
+
+        <!-- Özür Mesajı -->
+        <section class="apology-section">
+            <div class="apology-card">
+                
+                <p>Bu sefer şu anki durumu oyun yapmak istedim.</p>
+                <p>Trafikte dikkatli sür ve hayatında istemediğin adama yakalanma </p>
+            </div>
+        </section>
+
+        <!-- Araba Kaçış Oyunu -->
+        <section class="shooting-game-section">
+            <div class="shooting-game-card">
+                <h3>Gökhan'dan Kaçmalısın</h3>
+                
+                <!-- Araba Kaçış Oyunu -->
+                <div class="car-game-area" id="gameArea">
+                    <!-- Yol -->
+                    <div class="road">
+                        <div class="road-lines"></div>
+                        
+                        <!-- Oyuncunun Arabası -->
+                        <div class="player-car" id="playerCar">🚗</div>
+                        
+                        <!-- Gökhan Kovalayıcı -->
+                        <div class="chaser-gokhan" id="chaserGokhan">
+                            <div class="gokhan-face" style="background-image: url('images/gokhan.jpg');"></div>
+                            <div class="angry-text">😡</div>
+                        </div>
+                        
+                        <!-- Trafik Araçları -->
+                        <div class="traffic-container" id="trafficContainer"></div>
+                        
+                        <!-- Crash Effect -->
+                        <div class="crash-effect" id="crashEffect" style="display: none;">💥</div>
+                        
+                        <!-- Mobile Controls -->
+                        <div class="mobile-controls" id="mobileControls">
+                            <div class="mobile-controls-row">
+                                <button class="control-btn arrow-up" id="upBtn">↑</button>
+                            </div>
+                            <div class="mobile-controls-row">
+                                <button class="control-btn arrow-left" id="leftBtn">←</button>
+                                <button class="control-btn arrow-down" id="downBtn">↓</button>
+                                <button class="control-btn arrow-right" id="rightBtn">→</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Oyun UI -->
+                    <div class="game-ui">
+                        <div class="ui-row">
+                            <div class="speed-meter">
+                                <span>Hız: <span id="speedDisplay">0</span> km/h</span>
+                            </div>
+                            <div class="distance-meter">
+                                <span>Mesafe: <span id="distanceDisplay">0</span>m</span>
+                            </div>
+                            <div class="escape-timer">
+                                <span>Kaçış: <span id="timerDisplay">0</span>s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="car-stats">
+                    <div class="stat">
+                        <span>Skor: </span>
+                        <span id="score">0</span>
+                    </div>
+                    <div class="stat">
+                        <span>En Yüksek: </span>
+                        <span id="highScore">0</span>
+                    </div>
+                    <div class="stat">
+                        <span>Durum: </span>
+                        <span id="gameStatus">Hazır</span>
+                    </div>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="startBtn" class="start-btn">BAŞLA! 🚗</button>
+                    <button id="resetCarGame" class="reset-btn">Oyunu Sıfırla</button>
+                    <div class="controls-info">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Mesajı -->
+        <section class="final-section">
+            <div class="final-card">
+                
+                <p>Ne kadar umrunda olmasam da ben bir şekilde çabalamak istiyorum</p>
+                
+                
+                <div style="margin-top: 20px;">
+                    <a href="../" style="color: #ff6b6b; text-decoration: none; font-weight: bold;">← Ana Sayfaya Dön</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Oyun Müziği -->
+    <audio id="gameMusic" loop>
+        <source src="../audio/music-2.mp3" type="audio/mpeg">
+        Tarayıcınız bu ses formatını desteklemiyor.
+    </audio>
+
+    <script src="js/car-script.js"></script>
+</body>
+</html>

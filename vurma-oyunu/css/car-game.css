@@ -1,0 +1,400 @@
+/* Araba Kaçış Oyunu CSS */
+
+.car-game-area {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 30%, #228B22 30%, #228B22 100%);
+    border: 3px solid #333;
+    border-radius: 15px;
+    margin: 20px 0;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.road {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 100%;
+    background: linear-gradient(to bottom, #2c2c2c 0%, #1a1a1a 100%);
+    border-left: 5px solid #ffff00;
+    border-right: 5px solid #ffff00;
+}
+
+.road-lines {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 20px,
+        #ffffff 20px,
+        #ffffff 40px,
+        transparent 40px,
+        transparent 60px
+    );
+    animation: roadMoving 0.5s linear infinite;
+}
+
+@keyframes roadMoving {
+    0% { transform: translateX(-50%) translateY(0); }
+    100% { transform: translateX(-50%) translateY(60px); }
+}
+
+/* Oyuncunun Arabası */
+.player-car {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 60px;
+    font-size: 40px;
+    z-index: 10;
+    transition: all 0.2s ease;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.player-car.crashed {
+    animation: crashSpin 1s ease-out;
+    filter: grayscale(100%) brightness(0.5);
+}
+
+@keyframes crashSpin {
+    0% { transform: translateX(-50%) rotate(0deg) scale(1); }
+    50% { transform: translateX(-50%) rotate(360deg) scale(1.5); }
+    100% { transform: translateX(-50%) rotate(720deg) scale(0.8); }
+}
+
+/* Gökhan Kovalayıcı */
+.chaser-gokhan {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 70px;
+    z-index: 8;
+    animation: chaserMovement 2s ease-in-out infinite;
+}
+
+.gokhan-face {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    border: 2px solid #ff0000;
+    margin: 0 auto 5px auto;
+    animation: angryShake 0.3s ease-in-out infinite;
+}
+
+.angry-text {
+    text-align: center;
+    font-size: 20px;
+    animation: bounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes chaserMovement {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes angryShake {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+}
+
+@keyframes bounce {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+/* Trafik Araçları */
+.traffic-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+.traffic-car {
+    position: absolute;
+    width: 35px;
+    height: 55px;
+    font-size: 35px;
+    animation: trafficMoving 3s linear infinite;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transform: translateX(-50%);
+}
+
+.traffic-car.red { color: #ff0000; }
+.traffic-car.blue { color: #0066ff; }
+.traffic-car.green { color: #00aa00; }
+.traffic-car.yellow { color: #ffaa00; }
+
+@keyframes trafficMoving {
+    0% { top: -60px; }
+    100% { top: 100%; }
+}
+
+/* Crash Effect */
+.crash-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    animation: crashExplosion 0.8s ease-out;
+    z-index: 20;
+}
+
+@keyframes crashExplosion {
+    0% { 
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.5) rotate(180deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(2) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Oyun UI */
+.game-ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 15;
+}
+
+.ui-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.speed-meter,
+.distance-meter,
+.escape-timer {
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #00ff00;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.speed-meter {
+    border-color: #ff6b6b;
+}
+
+.distance-meter {
+    border-color: #4ecdc4;
+}
+
+.escape-timer {
+    border-color: #ffe66d;
+}
+
+/* Stats */
+.car-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    gap: 15px;
+}
+
+.car-stats .stat {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-weight: bold;
+}
+
+/* Game Controls */
+.controls-info {
+    margin-top: 10px;
+    text-align: center;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* Mobile Controls */
+.mobile-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 20;
+}
+
+.mobile-controls-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.control-btn {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+    background: rgba(0,0,0,0.9);
+}
+
+.control-btn.arrow-up {
+    background: rgba(0,150,0,0.8);
+}
+
+.control-btn.arrow-down {
+    background: rgba(150,0,0,0.8);
+}
+
+.control-btn.arrow-left {
+    background: rgba(0,0,150,0.8);
+}
+
+.control-btn.arrow-right {
+    background: rgba(150,100,0,0.8);
+}
+
+.start-btn {
+    background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+    box-shadow: 0 4px 12px rgba(0,170,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,170,0,0.4);
+}
+
+.start-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Game Over Popup */
+.game-over-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.game-over-content {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: popupAppear 0.5s ease-out;
+}
+
+@keyframes popupAppear {
+    0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .car-game-area {
+        height: 500px;
+    }
+    
+    .road {
+        width: 250px;
+    }
+    
+    .player-car {
+        width: 35px;
+        height: 50px;
+        font-size: 35px;
+        bottom: 100px;
+    }
+    
+    .chaser-gokhan {
+        width: 40px;
+        height: 60px;
+        bottom: -60px;
+    }
+    
+    .gokhan-face {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .car-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .controls-info {
+        display: none;
+    }
+    
+    .mobile-controls {
+        display: flex;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-controls {
+        display: none;
+    }
+}

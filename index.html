@@ -3,132 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safinur'a Özür | Gökhan'dan Sevgiyle</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Safinur'a Özür Siteleri | Gökhan'dan Sevgiyle</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+
+        .games-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .game-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 300px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .game-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .game-title {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .game-description {
+            font-size: 1em;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255,255,255,0.1);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10%, 90% { opacity: 1; }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 0.5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 3em; }
+            .subtitle { font-size: 1.2em; }
+            .games-container { flex-direction: column; align-items: center; }
+            .game-card { width: 280px; }
+        }
+    </style>
 </head>
 <body>
-    <div style="display: flex; align-items: center; justify-content: center; background: linear-gradient(90deg, #ffb6b9 0%, #fae3d9 100%); color: #b22222; padding: 20px 14px; font-weight: bold; font-size: 1.2em; border-bottom: 3px solid #b22222; box-shadow: 0 2px 8px rgba(178,34,34,0.15); margin-bottom: 38px; margin-top: 38px; border-radius: 18px;">
-        <button id="playPauseBtn" style="background: linear-gradient(135deg, #ff6f91 0%, #ffb6b9 100%); color: #fff; border: none; padding: 16px 32px; border-radius: 50px; cursor: pointer; font-size: 2em; box-shadow: 0 4px 16px rgba(255,111,145,0.18); margin-right: 22px; transition: background 0.2s, transform 0.2s; outline: none; position: relative;">
-            <span id="songStatusIcon" style="display: inline-block; vertical-align: middle;">▶️</span>
-        </button>
-        <audio id="hiddenAudio" src="audio/music.mp3" preload="auto" style="display:none;"></audio>
-        <span style="letter-spacing: 1px; font-size: 1.18em; text-shadow: 0 1px 6px #fff, 0 0px 2px #b22222;">Lütfen telefonunun sesini açmayı unutma! 🎵</span>
+    <div class="hearts">
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
     </div>
+
     <div class="container">
-        <!-- Ana Başlık Bölümü -->
-        <header class="hero-section">
-            <div class="hearts"></div>
-            <h1 class="main-title">Safinur'um 💕</h1>
-            <p class="subtitle">Benim en değerlim, belki beni dövüp rahatlarsın diye yaptım</p>
-        </header>
+        <h1 class="main-title">Safinur'a Özür Siteleri</h1>
+        <p class="subtitle">Hangi oyunla pişmanlığımı göstermemi istersin? 💕</p>
 
-        <!-- Özür Mesajı -->
-        <section class="apology-section">
-            <div class="apology-card">
-                <h2>Özür Dilerim My Love 🌹</h2>
-                <p>Saçma bir salaklık yaptım ve bunun için çok pişmanım. Sen benim hayatımın en güzel parçasısın ve sensiz bir gün bile düşünmekte zorlanıyorum.</p>
-                <p>Bir günümü bir saatimi bile sensiz düşünemezken bir ömrü sensiz yaşamak yaşamak mı?</p>
-                <p>Senin gözlerinde görüyorum ben dünyayı 💖</p>
-            </div>
-        </section>
+        <div class="games-container">
+            <a href="dovme-oyunu/" class="game-card">
+                <span class="game-icon">🥊</span>
+                <h2 class="game-title">Dövme Oyunu</h2>
+                <p class="game-description">Gökhan'ı döverek kızgınlığını çıkar! Tıklayarak vuruş yap ve hasarını görüntüle.</p>
+            </a>
 
-        <!-- Anket Bölümü -->
-        <section class="poll-section">
-            <div class="poll-card">
-                <h3>Safinur'un Kararı 🤔</h3>
-                <p>Gökhan'ın ne kadar dayak yemesini istersin?</p>
-                <form id="pollForm">
-                    <label class="poll-option">
-                        <input type="radio" name="punishment" value="none">
-                        <span>Hiç </span>
-                    </label>
-                    <label class="poll-option">
-                        <input type="radio" name="punishment" value="light">
-                        <span>Az</span>
-                    </label>
-                    <label class="poll-option">
-                        <input type="radio" name="punishment" value="medium">
-                        <span>Orta</span>
-                    </label>
-                    <label class="poll-option">
-                        <input type="radio" name="punishment" value="heavy">
-                        <span>Kemikleri kırılsın (Çok kızgınım! 😡)</span>
-                    </label>
-                    <button type="submit" class="poll-submit">Kararımı Ver!</button>
-                </form>
-                <div id="pollResult" class="poll-result"></div>
-            </div>
-        </section>
-
-        <!-- Gökhan'ı Dövme Oyunu -->
-        <section class="game-section">
-            <div class="game-card">
-                <h3>Gökhan'ı Döv Oyunu 🥊</h3>
-                <p>Kızgınlığını çıkarmak için Gökhan'a tıkla!</p>
-                
-                <!-- Oyun Alanı -->
-                <div class="game-area">
-                    <div class="character" id="character">
-                        <div class="face" id="characterFace" style="background-image: url('images/gokhan.jpg'); background-size: cover; background-position: center;">
-                            <!-- Gözler ve ağız gizli çünkü fotoğraf var -->
-                        </div>
-                        <div class="body"></div>
-                    </div>
-                    
-                    <div class="game-stats">
-                        <div class="stat">
-                            <span>Vuruş Sayısı: </span>
-                            <span id="hitCount">0</span>
-                        </div>
-                        <div class="stat">
-                            <span>Hasar: </span>
-                            <span id="damageLevel">Sağlıklı</span>
-                        </div>
-                    </div>
-                    
-                    <button id="resetGame" class="reset-btn">Oyunu Sıfırla</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final Mesajı -->
-        <section class="final-section">
-            <div class="final-card">
-                <h3>Son Söz 💌</h3>
-                <p>Sultanım, allah senin en güzel günlerini göstersin. Uzağım ve hasretinle yanıyorum. </p>
-                <p>Umarım biraz da olsa zaman geçirmene yardımcı olmuşumdur</p>
-                <div class="love-message">
-                    <span class="heart">💖</span>
-                    <span>Kalbimin sultanı</span>
-                    <span class="heart">💖</span>
-                </div>
-            </div>
-        </section>
+            <a href="vurma-oyunu/" class="game-card">
+                <span class="game-icon">🎯</span>
+                <h2 class="game-title">Vurma Oyunu</h2>
+                <p class="game-description">Gökhan'ı hedef alarak atış yap! Skor topla ve becerini göster.</p>
+            </a>
+        </div>
     </div>
-
-    <script src="js/script.js"></script>
-    <script>
-        var songPlaying = false;
-        var btn = document.getElementById('playPauseBtn');
-        var icon = document.getElementById('songStatusIcon');
-        var audio = document.getElementById('hiddenAudio');
-        btn.addEventListener('click', function() {
-            if (!songPlaying) {
-                audio.play();
-                songPlaying = true;
-                icon.textContent = '⏸️';
-            } else {
-                audio.pause();
-                audio.currentTime = 0;
-                songPlaying = false;
-                icon.textContent = '▶️';
-            }
-        });
-        audio.addEventListener('ended', function() {
-            songPlaying = false;
-            icon.textContent = '▶️';
-        });
-    </script>
-    </body>
+</body>
 </html>
